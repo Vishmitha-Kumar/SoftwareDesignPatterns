@@ -12,12 +12,22 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ModeToggle } from "./components/mode-toggle";
+import BlurIn from "@/components/magicui/blur-in";
+import Signin from "./components/signin";
+import SignUp from "./components/signup";
+import Navbar from "./components/navbar";
+
 
 const App=()=>{
     return(
         <>
-        <div className=" h-screen w-screen flex justify-center items-center bg-white-900">
+        <SignUp/>
+       
+        {/* <div className=" h-screen w-screen flex justify-center items-center bg-white-900">
             <ModeToggle/>
+            <div>
+      <BlurIn word={"Hello World"}></BlurIn>
+    </div>
         <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">Edit Profile</Button>
@@ -48,7 +58,7 @@ const App=()=>{
         </DialogFooter>
       </DialogContent>
     </Dialog>
-        </div>
+        </div> */}
         </>
     )
 }
