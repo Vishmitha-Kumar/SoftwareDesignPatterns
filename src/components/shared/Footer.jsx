@@ -59,7 +59,7 @@ const Footer = () => {
         </div>
       </div>
           
-      <p className="text-primary font-bold text-lg text-center">2024 © HallHunt Private LImited</p>
+      <p className="text-primary font-bold text-lg text-center">2024 © HallHunt Private Limited</p>
     </footer>
   )
 }

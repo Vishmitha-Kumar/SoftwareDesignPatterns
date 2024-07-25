@@ -9,6 +9,62 @@ import {
 } from "@/components/ui/carousel"
 import { Container, Search } from 'lucide-react'
 
+
+
+
+
+const carouselItems = [
+  {
+    id: 1,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/wedding.png',
+    text:'Wedding',
+    alt: 'slide1',
+  },
+  {
+    id: 2,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/cake.png',
+    text:'Birthday',
+    alt: 'slide2',
+  },
+  {
+    id: 3,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/ring.png',
+    text:'Engagement',
+    alt: 'slide3',
+  },
+  {
+    id: 4,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/pool.png',
+    text:'Pool party',
+    alt: 'slide4',
+  },
+  {
+    id: 5,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/cocktail.png',
+    text:'Cocktail Party',
+    alt: 'slide5',
+  },
+  {
+    id: 6,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/ofc-party.png',
+    text:'Corporate Party',
+    alt: 'slide6',
+  },
+  {
+    id: 7,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/banquet.png',
+    text:'Banquet Halls',
+    alt: 'slide7',
+  },
+  {
+    id: 8,
+    imgSrc: 'https://cdn.venuelook.com/images/new-home-images/kitty.png',
+    text:'Kitty Party',
+    alt: 'slide8',
+  },
+ 
+];
+
 const Home = () => {
   return (
     <>
@@ -34,36 +90,39 @@ const Home = () => {
         </div>
       </div>
     </div>
-    <div>
-     
-    <Carousel className="w-full">
-  <CarouselContent className="flex w-full">
-    {Array.from({ length: 7 }).map((_, index) => (
-      <CarouselItem key={index} className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
-        <div className="p-1">
-          <Card>
-            <CardContent className="flex aspect-square items-center justify-center p-6">
-              <span className="text-2xl font-semibold">{index + 1}</span>
-            </CardContent>
-          </Card>
-        </div>
-      </CarouselItem>
-    ))}
-  </CarouselContent>
-  <CarouselPrevious />
-  <CarouselNext />
-</Carousel>
-
-   
+    <div className='w-full flex justify-center items-start p-8'>
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className="w-[80%] h-auto"
+        >
+          <CarouselContent>
+            {carouselItems.map((item) => (
+              <CarouselItem key={item.id} className="basis-1/5">
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <img src={item.imgSrc} alt={item.alt} className="w-full h-full object-cover" />
+                    </CardContent>
+                      <p className="mt-2 text-xl font-serif text-center pb-5 text-[#CC4404] cursor-pointer">{item.text}</p>
+                  </Card>
+                </div>
+                
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
+      <hr className='border-solid p-5'/>
+    <div className='w-full flex justify-center items-center text-3xl font-serif'>
+      <h6>How it works ?</h6>
     </div>
-    <div className='p-10 border-solid '>
-    <div class="relative w-52 h-64 rounded-lg z-50 overflow-hidden flex flex-col items-center justify-center shadow-custom-shadow">
-  <div class="absolute top-1 left-1 w-[190px] h-[240px] z-20  backdrop-blur-md rounded-md overflow-hidden outline outline-2 "></div>
-  <div class="absolute top-1/2 left-1/2 w-[150px] h-[150px] bg-custom-red opacity-100 rounded-full filter blur-[12px] animate-blob-bounce"></div>
-</div>
 
 
-    </div>
+    
     </>
   )
 }
