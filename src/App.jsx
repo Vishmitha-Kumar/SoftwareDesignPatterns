@@ -1,65 +1,27 @@
 import React from "react";
-import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { ModeToggle } from "./components/mode-toggle";
-import BlurIn from "@/components/magicui/blur-in";
-import Signin from "./components/signin";
-import SignUp from "./components/signup";
-import Navbar from "./components/navbar";
+import Login from "./pages/shared/Login";
+import SignUp from "./pages/shared/Register";
+import Home from "./pages/shared/Home";
+import HomeLayout from "./Layout/Homelayout";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
-const App=()=>{
-    return(
-        <>
-        <SignUp/>
-       
-        {/* <div className=" h-screen w-screen flex justify-center items-center bg-white-900">
-            <ModeToggle/>
-            <div>
-      <BlurIn word={"Hello World"}></BlurIn>
-    </div>
-        <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name"  className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username"  className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-        </div> */}
-        </>
-    )
+const App = () => {
+  return (
+      <>
+          <BrowserRouter>
+              <Routes>
+                  <Route element={<HomeLayout />}>
+                      <Route path='/' element={<Home />} />
+                      <Route path='/login' element={<Login />} />
+                      <Route path='/register' element={<SignUp />} />
+                  </Route>
+              </Routes>
+          </BrowserRouter>
+
+
+      </>
+  )
 }
-export default App;
+
+export default App

@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-   
-    console.log('Email:', email);
-    console.log('Password:', password);
-  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-fit max-w-md p-10 space-y-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center text-gray-900">Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex items-center justify-center min-h-screen ">
+      <div className="w-1/4 max-w-md p-10 space-y-6  rounded-lg shadow-md border border-orange-600">
+        <h2 className="text-2xl font-bold text-center ">Login</h2>
+        <form className="space-y-4">
           <div>
-            {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label> */}
+          
             <input
               type="email"
               id="email"
               placeholder='Email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 mt-1 border-b-2 border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+             
+              className="w-full px-3 py-2 mt-1 border-b-2 text-black border-gray-300 rounded-md focus:outline-none focus:ring-orange-600 focus:border-orange-600"
               required
             />
           </div>
@@ -33,9 +23,8 @@ const Login = () => {
               type="password"
               id="password"
               placeholder='Password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 mt-1 border-b-2 border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+             
+               className="w-full px-3 py-2 mt-1 border-b-2 text-black border-gray-300 rounded-md focus:outline-none focus:ring-orange-600 focus:border-orange-600"
               required
             />
           </div>
@@ -61,3 +50,4 @@ const Login = () => {
 };
 
 export default Login;
+
