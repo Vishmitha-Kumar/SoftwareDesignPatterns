@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -113,10 +113,37 @@ const carouselItemsvenue = [
   },
   
 ];
+const halls = [
+  { id: 1, name: 'Grand Wedding Hall', location: 'New York' },
+  { id: 2, name: 'Sunset Party Hall', location: 'New York' },
+  { id: 3, name: 'Oceanview Conference Hall', location: 'San Francisco' },
+  { id: 4, name: 'Mountain Function Hall', location: 'Denver' },
+];
+
 const Home = () => {
+
+  const [query, setQuery] = useState('');
+  const [filteredHalls, setFilteredHalls] = useState([]);
+  const [searched, setSearched] = useState(false);
+  
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    filterHalls(value);
+    setSearched(value.trim() !== '');
+  };
+
+  const filterHalls = (query) => {
+    const results = halls.filter(hall =>
+      hall.name.toLowerCase().includes(query.toLowerCase()) ||
+      hall.location.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredHalls(results);
+  };
+
   return (
     <>
-    <div className="relative w-full h-[60vh]">
+          <div className="relative w-full h-[60vh]">
       <img 
         src="https://www.elizabethanne-weddings.com/wp-content/uploads/2023/02/louisgabriel-367-scaled.jpg" 
         alt="Banner Image" 
@@ -127,17 +154,36 @@ const Home = () => {
           Find & Book the Best Venue For Every Special Event
         </h1>
         <div className="flex items-center border border-gray-300 rounded-lg">
-          <input 
-            type="text" 
-            placeholder="Search for halls, services, or events..." 
-            className="flex-grow p-2 px-4 border-none rounded-l-lg focus:outline-none"
-          />
+        <input 
+              type="text" 
+              placeholder="Search for halls, services, or events..." 
+              value={query}
+              onChange={handleInputChange}
+              className="flex-grow p-2 px-4 border-none rounded-l-lg focus:outline-none"
+            />
           <button className="p-2 px-4 text-white bg-primary rounded-r-lg flex items-center">
             <Search className="h-5 w-5" />
           </button>
         </div>
       </div>
     </div>
+
+    <div className="p-4">
+        {searched && filteredHalls.length > 0 ? (
+          <ul>
+            {filteredHalls.map(hall => (
+              <li key={hall.id} className="p-2 border-b border-gray-300">
+                {hall.name} - {hall.location}
+              </li>
+            ))}
+          </ul>
+        )  : null}
+        {searched && filteredHalls.length > 2 && (
+          <p className='font-bold text-start text-lg text-orange-700 cursor-pointer'>Login for more results</p>
+        )}
+      </div>
+
+
     <div className='w-full flex justify-center items-start p-8'>
         <Carousel
           opts={{
@@ -153,6 +199,9 @@ const Home = () => {
                     <CardContent className="flex aspect-square items-center justify-center p-6">
                       <img src={item.imgSrc} alt={item.alt} className="w-full h-full object-cover" />
                     </CardContent>
+                    {/* <div className='w-full'>
+                      <p className="mt-2 text-lg font-normal text-center pb-5  cursor-pointer">{item.text}</p>
+                      </div> */}
                       <p className="mt-2 text-lg font-normal text-center pb-5  cursor-pointer">{item.text}</p>
                   </Card>
                 </div>
