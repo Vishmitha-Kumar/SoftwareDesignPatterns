@@ -1,18 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Login = () => {
+const Alogin = () => {
   return (
     <div className="flex min-h-screen">
       <div
         className="flex-1 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://ik.imagekit.io/hal1hunt/Home/Screenshot_2024-07-26_204341-removebg-preview%20(1).png?updatedAt=1722006934311')"
-        }}
+            backgroundImage: "url('https://ik.imagekit.io/hal1hunt/Home/Screenshot_2024-07-26_204341-removebg-preview%20(1).png?updatedAt=1722006934311')"
+          }}
       ></div>
       <div className="flex items-center justify-center flex-1">
         <div className="w-1/2 max-w-md p-10 space-y-6 rounded-lg shadow-md border border-orange-600">
-          <h2 className="text-2xl font-bold text-center">User Login</h2>
+          <h2 className="text-2xl font-bold text-center">Admin Login</h2>
           <form className="space-y-4">
             <div>
               <input
@@ -45,13 +45,8 @@ const Login = () => {
             <p className="text-sm text-center text-gray-600 cursor-pointer p-1">
               Don't have an account ? Sign up
             </p>
-            </NavLink>
-            <NavLink to='/alogin'>
-            <p className="text-sm font-semibold text-center text-indigo-600 cursor-pointer p-1">
-              Login for Admin
-            </p>
-            </NavLink>
-            
+            </NavLink> 
+           
           </form>
         </div>
       </div>
@@ -59,4 +54,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Alogin;

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -120,6 +120,39 @@ const halls = [
   { id: 4, name: 'Mountain Function Hall', location: 'Denver' },
 ];
 
+
+
+const reviews = [
+  {
+    name: 'John Doe',
+    date: 'July 20, 2024',
+    rev: 'This is an amazing product! I highly recommend it.',
+    rating: 5,
+    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+  },
+  {
+    name: 'Jane Smith',
+    date: 'July 18, 2024',
+    rev: 'Great value for the money. Will buy again.',
+    rating: 4,
+    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
+  },
+  {
+    name: 'Yoo Smith',
+    date: 'July 18, 2024',
+    rev: 'Great value for the money. Will buy again.',
+    rating: 4,
+    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
+  },
+  {
+    name: 'Alex',
+    date: 'July 18, 2024',
+    rev: 'Great value for the money. Will buy again.',
+    rating: 4,
+    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
+  },
+  
+];
 const Home = () => {
 
   const [query, setQuery] = useState('');
@@ -141,6 +174,32 @@ const Home = () => {
     setFilteredHalls(results);
   };
 
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+    }, 5000); 
+    return () => clearInterval(interval);
+  }, []);
+
+  const review = reviews[currentIndex];
+
+
+
+
+  const [currentIndi, setCurrentIndi] = useState(0);
+
+  
+  useEffect(() => {
+    const intervals = setInterval(() => {
+      setCurrentIndi((prevIndex) => (prevIndex + 2) % reviews.length);
+    }, 4000); 
+    return () => clearInterval(intervals);
+  }, []);
+
+  const reviee = reviews[currentIndi];
   return (
     <>
           <div className="relative w-full h-[60vh]">
@@ -294,6 +353,45 @@ const Home = () => {
           <CarouselNext />
         </Carousel>
       </div>
+      <div className="flex flex-col items-center p-2">
+      <h1 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100">Customer Reviews</h1>
+      <div className='flex flex-row items-center gap-8'>
+      <div className="max-w-sm rounded overflow-hidden shadow-lg p-6 bg-white dark:bg-gray-800">
+        <div className="flex items-center mb-4">
+          <img className="w-10 h-10 rounded-full mr-4" src={review.avatar} alt="Avatar" />
+          <div className="text-sm">
+            <p className="text-gray-900 dark:text-gray-100 leading-none">{review.name}</p>
+            <p className="text-gray-600 dark:text-gray-400">{review.date}</p>
+          </div>
+        </div>
+        <p className="text-gray-700 dark:text-gray-300 text-base">{review.rev}</p>
+        <div className="mt-4">
+          {Array(review.rating).fill().map((_, i) => (
+            <svg key={i} className="w-5 h-5 text-yellow-500 inline-block" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 15l-5.09 2.67L6.18 11 2 7.24l6.91-.64L10 2l1.09 4.6L18 7.24 13.82 11l1.27 6.67z"/>
+            </svg>
+          ))}
+        </div>
+      </div>
+      <div className="max-w-sm rounded overflow-hidden shadow-lg p-6 bg-white dark:bg-gray-800">
+        <div className="flex items-center mb-4">
+          <img className="w-10 h-10 rounded-full mr-4" src={reviee.avatar} alt="Avatar" />
+          <div className="text-sm">
+            <p className="text-gray-900 dark:text-gray-100 leading-none">{reviee.name}</p>
+            <p className="text-gray-600 dark:text-gray-400">{reviee.date}</p>
+          </div>
+        </div>
+        <p className="text-gray-700 dark:text-gray-300 text-base">{reviee.rev}</p>
+        <div className="mt-4">
+          {Array(reviee.rating).fill().map((_, i) => (
+            <svg key={i} className="w-5 h-5 text-yellow-500 inline-block" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 15l-5.09 2.67L6.18 11 2 7.24l6.91-.64L10 2l1.09 4.6L18 7.24 13.82 11l1.27 6.67z"/>
+            </svg>
+          ))}
+        </div>
+        </div>
+      </div>
+    </div>
     
     </>
   )
