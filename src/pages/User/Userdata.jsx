@@ -11,7 +11,6 @@ const Userdata = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState('');
   
-  // Sample locations
   const locations = ['Chennai',
     'Coimbatore',
     'Cuddalore',
@@ -131,7 +130,7 @@ const Userdata = () => {
       <div className='mb-4'>
         <label className='block text-sm font-medium text-gray-700'>Location</label>
         <select
-          className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+          className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black'
           value={selectedLocation}
           onChange={(e) => setSelectedLocation(e.target.value)}
         >
