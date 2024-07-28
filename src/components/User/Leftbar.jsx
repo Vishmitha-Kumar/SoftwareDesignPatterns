@@ -182,9 +182,11 @@ const Leftbar = ({ setFilters }) => {
 
       <div className='w-full'>
         <Button className='p-5 bg-red-500/5 hover:bg-red-500/10 font-bold w-full '>
+          <NavLink to="/">
           <span className='flex flex-row items-center justify-start w-full gap-2 text-red-500'>
             <Power size={20} /> Logout
           </span>
+            </NavLink>
         </Button>
       </div>
     </div>

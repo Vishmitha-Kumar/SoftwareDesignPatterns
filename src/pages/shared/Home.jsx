@@ -125,32 +125,32 @@ const halls = [
 
 const reviews = [
   {
-    name: 'John Doe',
+    name: 'User 1',
     date: 'July 20, 2024',
-    rev: 'This is an amazing product! I highly recommend it.',
+    rev: 'We booked our wedding hall through HALLHUNT, and the experience was fantastic! The venue was exactly as described, and the staff were incredibly helpful. The booking process was smooth, and we had no issues on our big day. Highly recommended!',
     rating: 5,
-    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+    avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
   },
   {
-    name: 'Jane Smith',
+    name: 'User 2',
     date: 'July 18, 2024',
-    rev: 'Great value for the money. Will buy again.',
+    rev: 'The party hall we booked was fantastic, with great amenities and a friendly staff. The only downside was the slightly higher price compared to other venues. Nonetheless, it was worth it for the quality and convenience.',
     rating: 4,
-    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
+    avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
   },
   {
-    name: 'Yoo Smith',
+    name: 'User 3',
     date: 'July 18, 2024',
-    rev: 'Great value for the money. Will buy again.',
+    rev: 'We booked a conference hall through HALLHUNT for our annual company meeting. The venue was top-notch, equipped with all the necessary facilities. The booking process was straightforward, and the event went off without a hitch. Excellent service!',
     rating: 4,
-    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
+    avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
   },
   {
-    name: 'Alex',
+    name: 'User 4',
     date: 'July 18, 2024',
-    rev: 'Great value for the money. Will buy again.',
+    rev: 'The function hall we chose was ideal for our event, with ample space and good facilities. The only improvement could be better signage to find the venue more easily. Other than that, we were very satisfied with our booking.',
     rating: 4,
-    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
+    avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
   },
   
 ];

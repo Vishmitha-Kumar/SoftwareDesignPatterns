@@ -41,43 +41,43 @@ const AdminUsers = () => {
     {
       invoice: "INV001",
       paymentStatus: "Paid",
-      totalAmount: "$250.00",
+      totalAmount: "Rs.250.00",
       paymentMethod: "Credit Card",
     },
     {
       invoice: "INV002",
       paymentStatus: "Pending",
-      totalAmount: "$150.00",
+      totalAmount: "Rs.150.00",
       paymentMethod: "PayPal",
     },
     {
       invoice: "INV003",
       paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
+      totalAmount: "Rs.350.00",
       paymentMethod: "Bank Transfer",
     },
     {
       invoice: "INV004",
       paymentStatus: "Paid",
-      totalAmount: "$450.00",
+      totalAmount: "Rs.450.00",
       paymentMethod: "Credit Card",
     },
     {
       invoice: "INV005",
       paymentStatus: "Paid",
-      totalAmount: "$550.00",
+      totalAmount: "Rs. 550.00",
       paymentMethod: "PayPal",
     },
     {
       invoice: "INV006",
       paymentStatus: "Pending",
-      totalAmount: "$200.00",
+      totalAmount: "Rs. 200.00",
       paymentMethod: "Bank Transfer",
     },
     {
       invoice: "INV007",
       paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
+      totalAmount: "Rs. 300.00",
       paymentMethod: "Credit Card",
     },
   ]
@@ -125,14 +125,14 @@ const AdminUsers = () => {
         <SheetContent>
           <SheetHeader>
             <SheetTitle>Add User</SheetTitle>
+            {/* <SheetClose asChild>
+              <Button variant="ghost" className="absolute right-2 top-2" onClick={() => setOpen(false)}>
+                <X className="h-4 w-4" />
+              </Button>
+            </SheetClose> */}
           </SheetHeader>
           <div className="grid gap-4 py-4">
-            <div className="flex flex-col items-start gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" className="col-span-3" />
-            </div>
+           
             <div className="flex flex-col items-start gap-4">
               <Label htmlFor="username" className="text-right">
                 Username
@@ -153,7 +153,9 @@ const AdminUsers = () => {
             </div>
           </div>
           <SheetFooter className='flex flex-col flex-1'>
+          <SheetClose asChild>
             <Button className='w-1/2 outline bg-red-400/90 hover:bg-red-400' onClick={() => setOpen(!open)}>Cancel</Button>
+            </SheetClose>
             <Button type="submit" className='w-1/2'>Save changes</Button>
           </SheetFooter>
         </SheetContent>

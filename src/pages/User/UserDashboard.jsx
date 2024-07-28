@@ -27,15 +27,22 @@ const UserDashboard = () => {
         {
           invoice: "INV001",
           hall:"JK Mahal",
-          totalAmount: "Rs.250.00",
+          totalAmount: "Rs.1500.00",
           functionType: "Birthday Party",
         },
         {
           invoice: "INV002",
+         hall: "JK Mahal",
+          totalAmount: "Rs.15000.00",
+          functionType: "Engagement",
+        },
+        {
+          invoice: "INV003",
          hall: "SVS Marriage hall",
-          totalAmount: "Rs.150.00",
+          totalAmount: "Rs.24500.00",
           functionType: "Wedding",
         },
+       
     ]
     return (
         <div>
@@ -60,7 +67,7 @@ const UserDashboard = () => {
                     <ShoppingBag className="h-6 w-6 text-primary" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">10,000</div>
+                    <div className="text-2xl font-bold">41,000</div>
                 </CardContent>
             </Card>
 
