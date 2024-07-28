@@ -12,6 +12,7 @@ import AdminUsers from "./pages/Admin/AdminUsers";
 import Userdata from "./pages/User/Userdata";
 import UserLayout from "./Layout/Userlayout";
 import UserDashboard from "./pages/User/UserDashboard";
+import Adminadd from "./pages/Admin/Adminadd";
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
                   <Route element={<AdminLayout />}>
                     <Route path='/admin/dashboard' element={<AdminDashboard />}/>
                     <Route path='/admin/users' element={<AdminUsers />}/>
+                    <Route path='/admin/hall' element={<Adminadd/>}/>
                   </Route>
                   <Route element={<UserLayout />}>
                     <Route path='/user/data' element={<Userdata />}/>

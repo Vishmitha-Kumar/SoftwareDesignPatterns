@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Users, Power } from 'lucide-react'
+import { LayoutDashboard, Users, Power, Blocks } from 'lucide-react'
 import { Button } from '../ui/button'
 
 const Leftbar = () => {
@@ -14,6 +14,11 @@ const Leftbar = () => {
       title: 'Users',
       link: '/admin/users',
       icon: Users
+    },
+    {
+      title:'Add Halls',
+      link:'/admin/hall',
+      icon:Blocks
     }
   ]
 
