@@ -60,9 +60,11 @@ const SignUp = () => {
               />
             </div>
             <div>
+              <NavLink to='/login'>
               <button type="submit" className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Sign Up
               </button>
+              </NavLink>
             </div>
             <NavLink to="/login">
               <p className="text-sm text-center text-gray-600 cursor-pointer p-1">

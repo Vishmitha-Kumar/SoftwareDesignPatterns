@@ -76,3 +76,24 @@
 {
   color:rgb(204, 68, 4)
 }
+
+/* Scrollbar styling */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #3e3e3e;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a09d99ba;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e7e7e7;
+}

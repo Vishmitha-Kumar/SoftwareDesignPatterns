@@ -4,7 +4,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="w-full py-8 border-t-2 border-primary/50 bg-neutral-500">
+    <footer className="w-full py-8 border-t-2 border-primary/50 bg-slate-700">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start">
         <div className="w-full md:w-1/4 mb-8 md:mb-0">
           <h2 className="text-primary font-extrabold text-4xl mb-4">HALLHUNT</h2>

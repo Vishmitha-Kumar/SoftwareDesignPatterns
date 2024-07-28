@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { Container, Search } from 'lucide-react'
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -236,9 +237,8 @@ const Home = () => {
               </li>
             ))}
           </ul>
-        )  : null}
-        {searched && filteredHalls.length > 2 && (
-          <p className='font-bold text-start text-lg text-orange-700 cursor-pointer'>Login for more results</p>
+        )  :(
+          searched && <NavLink to='/login' className='font-bold text-start text-lg text-orange-700 cursor-pointer'>Login for more results</NavLink>
         )}
       </div>
 
@@ -327,7 +327,7 @@ const Home = () => {
       <p className='w-full flex justify-center items-center'>Discover some real events organized by us.</p>
     </div>
 
-    <div className='h-full w-full flex justify-center items-center pb-6'>
+    <div className='h-full w-full flex justify-center items-center pb-14'>
         <Carousel
           opts={{
             align: "start",
@@ -353,7 +353,7 @@ const Home = () => {
           <CarouselNext />
         </Carousel>
       </div>
-      <div className="flex flex-col items-center p-2">
+      <div className="flex flex-col items-center  pb-20">
       <h1 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100">Customer Reviews</h1>
       <div className='flex flex-row items-center gap-8'>
       <div className="max-w-sm rounded overflow-hidden shadow-lg p-6 bg-white dark:bg-gray-800">
