@@ -1,22 +1,53 @@
-import React,{useState} from 'react'
-import { useOutletContext } from 'react-router-dom'
-import { Card, CardContent, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { MapPin } from 'lucide-react'
+import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { MapPin } from 'lucide-react';
 import { CheckCircle2Icon } from 'lucide-react';
 
 const Userdata = () => {
   const { filters } = useOutletContext();
   const [showPopup, setShowPopup] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
+  const [selectedLocation, setSelectedLocation] = useState('');
+  
+  // Sample locations
+  const locations = ['Chennai',
+    'Coimbatore',
+    'Cuddalore',
+    'Dharmapuri',
+    'Dindigul',
+    'Erode',
+    'Kanchipuram',
+    'Kanyakumari',
+    'Karur',
+    'Krishnagiri',
+    'Madurai',
+    'Nagapattinam',
+    'Namakkal',
+    'Perambalur',
+    'Pudukkottai',
+    'Ramanathapuram',
+    'Salem',
+    'Sivaganga',
+    'Thanjavur',
+    'Theni',
+    'Thoothukudi ',
+    'Trichy',
+    'Tirunelveli',
+    'Tirupur',
+    'Tiruvallur',
+    'Tiruvannamalai',
+    'Vellore',
+    'Viluppuram',
+    'Virudhunagar'];
 
   const data = [
     {
       id: 1,
       name: 'Windsor Gardens',
-      location: 'Coimbatore',
-      imgs:"https://content3.jdmagicbox.com/comp/coimbatore/m9/0422px422.x422.180619160525.c6m9/catalogue/windsor-gardens-alandurai-coimbatore-banquet-halls-dt5qw3hqis.jpg",
+      location: 'Chennai',
+      imgs: "https://content3.jdmagicbox.com/comp/coimbatore/m9/0422px422.x422.180619160525.c6m9/catalogue/windsor-gardens-alandurai-coimbatore-banquet-halls-dt5qw3hqis.jpg",
       vegPrice: '$20',
       nonVegPrice: '$25',
       reviews: '4.5 stars',
@@ -29,7 +60,7 @@ const Userdata = () => {
       id: 2,
       name: 'Rengaz Mahal',
       location: 'Coimbatore',
-      imgs:"https://media.bookeventz.com/884x350/html/bookeventz.com/images/restaurant-picture/rengaz-mahal-chinniyampalayam-coimbatore.jpg",
+      imgs: "https://media.bookeventz.com/884x350/html/bookeventz.com/images/restaurant-picture/rengaz-mahal-chinniyampalayam-coimbatore.jpg",
       vegPrice: '$30',
       nonVegPrice: '$35',
       reviews: '4.0 stars',
@@ -42,7 +73,7 @@ const Userdata = () => {
       id: 3,
       name: 'Crystal Lake ServiceAppartments',
       location: 'Coimbatore',
-      imgs:"https://content.jdmagicbox.com/comp/coimbatore/g4/0422px422.x422.190427114046.j6g4/catalogue/crystal-lake-service-apartments-singanallur-coimbatore-banquet-halls-shtm0awssb.jpg",
+      imgs: "https://content.jdmagicbox.com/comp/coimbatore/g4/0422px422.x422.190427114046.j6g4/catalogue/crystal-lake-service-apartments-singanallur-coimbatore-banquet-halls-shtm0awssb.jpg",
       vegPrice: '$30',
       nonVegPrice: '$35',
       reviews: '4.0 stars',
@@ -54,8 +85,8 @@ const Userdata = () => {
     {
       id: 4,
       name: 'JK Hotels',
-      location: 'Coimbatore',
-      imgs:"https://lh3.googleusercontent.com/9VWqa8zwc7gxsgP8G1rWggDOGUO3rpCWYNBeKH5vV5PvHt2RfIWRQBDcphHoW8U8Hn-BMgrEQnqHngKfTCrP92Gv=w600-h400-n-rw-c0xffffffff-l95-e31",
+      location: 'Virudhunagar',
+      imgs: "https://lh3.googleusercontent.com/9VWqa8zwc7gxsgP8G1rWggDOGUO3rpCWYNBeKH5vV5PvHt2RfIWRQBDcphHoW8U8Hn-BMgrEQnqHngKfTCrP92Gv=w600-h400-n-rw-c0xffffffff-l95-e31",
       vegPrice: '$30',
       nonVegPrice: '$35',
       reviews: '4.0 stars',
@@ -64,18 +95,15 @@ const Userdata = () => {
       guestRange: 'under 500',
       priceRange: 'under 400'
     },
-    
-  ]
+  ];
 
-
-
-  
   const filteredData = data.filter(item => {
     return (
       (!filters.type || item.type === filters.type) &&
       (!filters.hallType || item.hallType === filters.hallType) &&
       (!filters.guestRange || item.guestRange === filters.guestRange) &&
-      (!filters.priceRange || item.priceRange === filters.priceRange)
+      (!filters.priceRange || item.priceRange === filters.priceRange) &&
+      (!selectedLocation || item.location === selectedLocation)
     );
   });
 
@@ -98,12 +126,24 @@ const Userdata = () => {
     }, 3000);
   };
 
-
-
-
-
   return (
     <div className='m-1 p-4'>
+      <div className='mb-4'>
+        <label className='block text-sm font-medium text-gray-700'>Location</label>
+        <select
+          className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+          value={selectedLocation}
+          onChange={(e) => setSelectedLocation(e.target.value)}
+        >
+          <option value=''>Select a location</option>
+          {locations.map(location => (
+            <option key={location} value={location}>
+              {location}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {filteredData.map(item => (
         <Card key={item.id} className='shadow-sm shadow-primary mb-4 flex'>
           <div className='w-1/4'>
@@ -114,9 +154,9 @@ const Userdata = () => {
               <div className='flex flex-col gap-2'>
                 <CardTitle>{item.name}</CardTitle>
                 <p style={{ display: 'flex', alignItems: 'center' }}>
-      <span style={{ marginRight: '8px' }}><MapPin /></span>
-      {item.location || 'N/A'}
-    </p>
+                  <span style={{ marginRight: '8px' }}><MapPin /></span>
+                  {item.location || 'N/A'}
+                </p>
                 <p>Type: {item.type}</p>
                 <p>Reviews: {item.reviews}</p>
               </div>
@@ -135,13 +175,13 @@ const Userdata = () => {
         </Card>
       ))}
 
-{showPopup && (
+      {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
             <h2 className="text-xl font-bold mb-4 text-black">Event Details</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-sm font-medium text-gray-700 ">Occasion</label>
+                <label className="block text-sm font-medium text-gray-700">Occasion</label>
                 <select className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black">
                   <option>Wedding</option>
                   <option>Party</option>
@@ -224,4 +264,4 @@ const Userdata = () => {
   );
 };
 
-export default Userdata
+export default Userdata;
