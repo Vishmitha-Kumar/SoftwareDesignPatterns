@@ -1,11 +1,15 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MapPin } from 'lucide-react'
+import { CheckCircle2Icon } from 'lucide-react';
 
 const Userdata = () => {
-  const { filters } = useOutletContext()
+  const { filters } = useOutletContext();
+  const [showPopup, setShowPopup] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
 
   const data = [
     {
@@ -63,14 +67,40 @@ const Userdata = () => {
     
   ]
 
+
+
+  
   const filteredData = data.filter(item => {
     return (
       (!filters.type || item.type === filters.type) &&
       (!filters.hallType || item.hallType === filters.hallType) &&
       (!filters.guestRange || item.guestRange === filters.guestRange) &&
       (!filters.priceRange || item.priceRange === filters.priceRange)
-    )
-  })
+    );
+  });
+
+  const handleRequestQuoteClick = () => {
+    setShowPopup(true);
+    setShowSuccess(false);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowPopup(false);
+    setShowSuccess(true);
+
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 3000);
+  };
+
+
+
+
 
   return (
     <div className='m-1 p-4'>
@@ -100,12 +130,98 @@ const Userdata = () => {
                 <p>Non-Veg Price: {item.nonVegPrice}</p>
               </div>
             </div>
-            <Button className='self-end mt-4'>Request a Quote</Button>
+            <Button className='self-end mt-4' onClick={handleRequestQuoteClick}>Request a Quote</Button>
           </CardContent>
         </Card>
       ))}
+
+{showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">Event Details</h2>
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 ">Occasion</label>
+                <select className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <option>Wedding</option>
+                  <option>Party</option>
+                  <option>Conference</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Date</label>
+                <input
+                  type="date"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Number of Guests</label>
+                <input
+                  type="number"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+                <input
+                  type="number"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="e.g., +91 xxxxxxxxxx"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Budget Range</label>
+                <input
+                  type="text"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="e.g., $5000 - $10000"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Food Preferences</label>
+                <textarea
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  rows="3"
+                  placeholder="Describe any specific food preferences"
+                ></textarea>
+              </div>
+              <div className="flex justify-end mt-4">
+                <button
+                  type="button"
+                  onClick={handleClosePopup}
+                  className="mr-2 px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showSuccess && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md flex flex-col items-center">
+            <CheckCircle2Icon className="h-12 w-12 text-green-500 mb-4" />
+            <h2 className="text-xl font-bold mb-2">Request Submitted Successfully</h2>
+            <p className="text-gray-600">Thank you for your request. We will get back to you soon.</p>
+          </div>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default Userdata
