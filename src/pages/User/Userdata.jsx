@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
 import { CheckCircle2Icon } from 'lucide-react';
 import RequestQuote from '@/components/shared/RequestQuote';
- 
 
 const Userdata = () => {
   const { filters } = useOutletContext();
@@ -13,7 +12,8 @@ const Userdata = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  
+  const navigate = useNavigate();
+
   const locations = ['Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Nagapattinam', 'Namakkal', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Salem', 'Sivagangai', 'Thanjavur', 'Theni', 'Thoothukudi', 'Trichy', 'Tirunelveli', 'Tirupur', 'Tiruvallur', 'Tiruvannamalai', 'Vellore', 'Viluppuram', 'Virudhunagar'];
 
   const data = [
@@ -28,7 +28,8 @@ const Userdata = () => {
       type: 'Birthday',
       hallType: 'Banquet halls',
       guestRange: 'under 100',
-      priceRange: 'under 400'
+      priceRange: 'under 400',
+      isFavorite: false
     },
     {
       id: 2,
@@ -46,7 +47,7 @@ const Userdata = () => {
     {
       id: 3,
       name: 'Crystal Lake ServiceAppartments',
-      location: 'Coimbatore',
+      location: 'Namakkal',
       imgs: "https://content.jdmagicbox.com/comp/coimbatore/g4/0422px422.x422.190427114046.j6g4/catalogue/crystal-lake-service-apartments-singanallur-coimbatore-banquet-halls-shtm0awssb.jpg",
       vegPrice: '$30',
       nonVegPrice: '$35',
@@ -59,7 +60,7 @@ const Userdata = () => {
     {
       id: 4,
       name: 'JK Hotels',
-      location: 'Virudhunagar',
+      location: 'Tirupur',
       imgs: "https://lh3.googleusercontent.com/9VWqa8zwc7gxsgP8G1rWggDOGUO3rpCWYNBeKH5vV5PvHt2RfIWRQBDcphHoW8U8Hn-BMgrEQnqHngKfTCrP92Gv=w600-h400-n-rw-c0xffffffff-l95-e31",
       vegPrice: '$30',
       nonVegPrice: '$35',
@@ -82,9 +83,8 @@ const Userdata = () => {
     );
   });
 
-  const handleRequestQuoteClick = () => {
-    setShowPopup(true);
-    setShowSuccess(false);
+  const handleRequestQuoteClick = (id) => {
+    navigate(`/description/${id}`);
   };
 
   const handleClosePopup = () => {
@@ -156,7 +156,7 @@ const Userdata = () => {
                 <p>Non-Veg Price: {item.nonVegPrice}</p>
               </div>
             </div>
-            <Button className='self-end mt-4' onClick={handleRequestQuoteClick}>Request a Quote</Button>
+            <Button className='self-end mt-4' onClick={() => handleRequestQuoteClick(item.id)}>Request a Quote</Button>
           </CardContent>
         </Card>
       ))}
@@ -167,15 +167,7 @@ const Userdata = () => {
         showPopup={showPopup}
       />
 
-      {showSuccess && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md flex flex-col items-center">
-            <CheckCircle2Icon className="h-12 w-12 text-green-500 mb-4" />
-            <h2 className="text-xl font-bold mb-2">Request Submitted Successfully</h2>
-            <p className="text-gray-600">Thank you for your request. We will get back to you soon.</p>
-          </div>
-        </div>
-      )}
+      
     </div>
   );
 };

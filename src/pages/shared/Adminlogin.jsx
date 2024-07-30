@@ -13,9 +13,9 @@ const Alogin = () => {
     const adminEmail = 'admin@gmail.com';
 
     if (email === adminEmail) {
-      // Proceed with login and redirect to the admin dashboard
+      
       console.log('Admin login successful');
-      navigate('/admin/dashboard'); // Redirect to the admin dashboard route
+      navigate('/admin/dashboard'); 
     } else {
       setError('Invalid admin email address');
     }
@@ -75,5 +75,4 @@ const Alogin = () => {
     </div>
   );
 };
-
 export default Alogin;

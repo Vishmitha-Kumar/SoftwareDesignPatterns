@@ -13,6 +13,8 @@ import Userdata from "./pages/User/Userdata";
 import UserLayout from "./Layout/Userlayout";
 import UserDashboard from "./pages/User/UserDashboard";
 import Adminadd from "./pages/Admin/Adminadd";
+import DescriptionPage from "./components/shared/Description";
+import RequestQuote from "./components/shared/RequestQuote";
 
 
 const App = () => {
@@ -25,6 +27,7 @@ const App = () => {
                       <Route path='/login' element={<Login />} />
                       <Route path='/register' element={<SignUp />} />
                         <Route path='/alogin' element={<Alogin />}/> 
+                      
 
                   </Route>
                   <Route element={<AdminLayout />}>
@@ -35,6 +38,7 @@ const App = () => {
                   <Route element={<UserLayout />}>
                     <Route path='/user/data' element={<Userdata />}/>
                     <Route path='/user/dashboard' element={<UserDashboard/>}/>
+                    <Route path="/description/:id" element={<DescriptionPage />} />
                   </Route>
               </Routes>
           </BrowserRouter>

@@ -1,28 +1,57 @@
 import React, { useState } from 'react';
-import { CheckCircle2Icon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const RequestQuote = ({ handleClosePopup, handleSubmit, showPopup }) => {
+  const [selectedOccasion, setSelectedOccasion] = useState('');
+
+  const handleOccasionChange = (event) => {
+    setSelectedOccasion(event.target.value);
+  };
+
   return (
     <>
       {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md overflow-y-auto max-h-full">
             <h2 className="text-xl font-bold mb-4 text-black">Event Details</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Occasion</label>
-                <select className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black">
+                <select
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+                  value={selectedOccasion}
+                  onChange={handleOccasionChange}
+                  required
+                >
+                  <option value="">Select Occasion</option>
                   <option>Wedding</option>
                   <option>Party</option>
                   <option>Conference</option>
                   <option>Other</option>
                 </select>
+                {selectedOccasion === 'Other' && (
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">Please specify</label>
+                    <input
+                      type="text"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+                      placeholder="Enter the type of occasion"
+                      required
+                    />
+                  </div>
+                )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Date</label>
+                <label className="block text-sm font-medium text-gray-700">From Time/Date</label>
                 <input
-                  type="date"
+                  type="datetime-local"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">To Time/Date</label>
+                <input
+                  type="datetime-local"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
                   required
                 />
@@ -38,9 +67,10 @@ const RequestQuote = ({ handleClosePopup, handleSubmit, showPopup }) => {
               <div>
                 <label className="block text-sm font-medium text-gray-700">Phone Number</label>
                 <input
-                  type="number"
+                  type="tel"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
                   placeholder="e.g., +91 xxxxxxxxxx"
+                  pattern="^\+?[1-9]\d{1,14}$"
                   required
                 />
               </div>

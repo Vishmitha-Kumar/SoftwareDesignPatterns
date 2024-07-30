@@ -319,7 +319,6 @@ const Home = () => {
   </div>
 </div>
 
-
 <div >
       <h6 className='w-full flex justify-center items-center text-3xl font-semibold p-4'>Get Inspired</h6>
       <p className='w-full flex justify-center items-center'>Discover some real events organized by us.</p>
