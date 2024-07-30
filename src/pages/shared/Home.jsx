@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/carousel"
 import { Container, Search } from 'lucide-react'
 import { NavLink } from 'react-router-dom';
+import SearchBar from '../../components/shared/Search';
+
 
 
 
@@ -114,12 +116,7 @@ const carouselItemsvenue = [
   },
   
 ];
-const halls = [
-  { id: 1, name: 'Grand Wedding Hall', location: 'New York' },
-  { id: 2, name: 'Sunset Party Hall', location: 'New York' },
-  { id: 3, name: 'Oceanview Conference Hall', location: 'San Francisco' },
-  { id: 4, name: 'Mountain Function Hall', location: 'Denver' },
-];
+
 
 
 
@@ -155,6 +152,16 @@ const reviews = [
   
 ];
 const Home = () => {
+
+
+  const [searchResults, setSearchResults] = useState(null);
+
+  const handleSearch = (searchParams) => {
+    
+    console.log('Search parameters:', searchParams);
+
+    setSearchResults([]);
+  };
 
   const [query, setQuery] = useState('');
   const [filteredHalls, setFilteredHalls] = useState([]);
@@ -203,29 +210,20 @@ const Home = () => {
   const reviee = reviews[currentIndi];
   return (
     <>
-          <div className="relative w-full h-[60vh]">
+        <div className="relative w-full h-[70vh]">
       <img 
         src="https://www.elizabethanne-weddings.com/wp-content/uploads/2023/02/louisgabriel-367-scaled.jpg" 
         alt="Banner Image" 
         className="w-full h-full object-cover bg-opacity-5" 
       />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4 rounded shadow-lg z-10">
-        <h1 className="text-center text-4xl font-bold text-slate-50 mb-4">
-          Find & Book the Best Venue For Every Special Event
-        </h1>
-        <div className="flex items-center border border-gray-300 rounded-lg">
-        <input 
-              type="text" 
-              placeholder="Search for halls, services, or events..." 
-              value={query}
-              onChange={handleInputChange}
-              className="flex-grow p-2 px-4 border-none rounded-l-lg focus:outline-none"
-            />
-          <button className="p-2 px-4 text-white bg-primary rounded-r-lg flex items-center">
-            <Search className="h-5 w-5" />
-          </button>
+      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-md p-4 rounded shadow-lg z-10">
+          <h1 className="text-center text-4xl font-bold text-slate-50 mb-4">
+            Find & Book the Best Venue For Every Special Event
+          </h1>
         </div>
-      </div>
+        <div className='absolute top-2/3 transform -translate-y-1/3 w-[90%] p-4 rounded shadow-lg z-10'>
+          <SearchBar onSearch={handleSearch} />
+        </div>
     </div>
 
     <div className="p-4">

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { ModeToggle } from '../mode-toggle'
-
-    import { LayoutDashboard } from 'lucide-react'
+import { LayoutDashboard } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
+
 
 const Topbar = () => {
 
@@ -21,8 +21,7 @@ const Topbar = () => {
           UserLinks.map((data, index) => (
             <NavLink key={index} to={data.link} className='p-5 font-bold mt-2'>
               <span className='flex flex-row items-center justify-start  gap-2'>
-                {React.createElement(data.icon)}
-               
+                {React.createElement(data.icon)} 
               </span>
             </NavLink>
           ))
@@ -37,5 +36,4 @@ const Topbar = () => {
         </div>
     )
 }
-
 export default Topbar

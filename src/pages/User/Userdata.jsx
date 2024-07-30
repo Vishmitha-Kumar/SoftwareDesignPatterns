@@ -4,42 +4,17 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
 import { CheckCircle2Icon } from 'lucide-react';
+import RequestQuote from '@/components/shared/RequestQuote';
+ 
 
 const Userdata = () => {
   const { filters } = useOutletContext();
   const [showPopup, setShowPopup] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   
-  const locations = ['Chennai',
-    'Coimbatore',
-    'Cuddalore',
-    'Dharmapuri',
-    'Dindigul',
-    'Erode',
-    'Kanchipuram',
-    'Kanyakumari',
-    'Karur',
-    'Krishnagiri',
-    'Madurai',
-    'Nagapattinam',
-    'Namakkal',
-    'Perambalur',
-    'Pudukkottai',
-    'Ramanathapuram',
-    'Salem',
-    'Sivaganga',
-    'Thanjavur',
-    'Theni',
-    'Thoothukudi ',
-    'Trichy',
-    'Tirunelveli',
-    'Tirupur',
-    'Tiruvallur',
-    'Tiruvannamalai',
-    'Vellore',
-    'Viluppuram',
-    'Virudhunagar'];
+  const locations = ['Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Nagapattinam', 'Namakkal', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Salem', 'Sivagangai', 'Thanjavur', 'Theni', 'Thoothukudi', 'Trichy', 'Tirunelveli', 'Tirupur', 'Tiruvallur', 'Tiruvannamalai', 'Vellore', 'Viluppuram', 'Virudhunagar'];
 
   const data = [
     {
@@ -64,7 +39,7 @@ const Userdata = () => {
       nonVegPrice: '$35',
       reviews: '4.0 stars',
       type: 'Wedding',
-      hallType: 'Conference halls',
+      hallType: 'Marriage halls',
       guestRange: 'above 1000',
       priceRange: 'under 500'
     },
@@ -102,7 +77,8 @@ const Userdata = () => {
       (!filters.hallType || item.hallType === filters.hallType) &&
       (!filters.guestRange || item.guestRange === filters.guestRange) &&
       (!filters.priceRange || item.priceRange === filters.priceRange) &&
-      (!selectedLocation || item.location === selectedLocation)
+      (!selectedLocation || item.location === selectedLocation) &&
+      (item.name.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -127,22 +103,33 @@ const Userdata = () => {
 
   return (
     <div className='m-1 p-4'>
-      <div className='mb-4'>
-        <label className='block text-sm font-medium text-gray-700'>Location</label>
-        <select
-          className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black'
-          value={selectedLocation}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-        >
-          <option value=''>Select a location</option>
-          {locations.map(location => (
-            <option key={location} value={location}>
-              {location}
-            </option>
-          ))}
-        </select>
+      <div className='w-full flex justify-between'>
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700'>Location</label>
+          <select
+            className='mt-1 block border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black'
+            value={selectedLocation}
+            onChange={(e) => setSelectedLocation(e.target.value)}
+          >
+            <option value=''>Select a location</option>
+            {locations.map(location => (
+              <option key={location} value={location}>
+                {location}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700'>Search</label>
+          <input
+            type='text'
+            className='mt-1 block border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black'
+            placeholder='Search by name...'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
-
       {filteredData.map(item => (
         <Card key={item.id} className='shadow-sm shadow-primary mb-4 flex'>
           <div className='w-1/4'>
@@ -174,81 +161,11 @@ const Userdata = () => {
         </Card>
       ))}
 
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4 text-black">Event Details</h2>
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Occasion</label>
-                <select className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black">
-                  <option>Wedding</option>
-                  <option>Party</option>
-                  <option>Conference</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Date</label>
-                <input
-                  type="date"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Number of Guests</label>
-                <input
-                  type="number"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-                <input
-                  type="number"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                  placeholder="e.g., +91 xxxxxxxxxx"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Budget Range</label>
-                <input
-                  type="text"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                  placeholder="e.g., $5000 - $10000"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Food Preferences</label>
-                <textarea
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                  rows="3"
-                  placeholder="Describe any specific food preferences"
-                ></textarea>
-              </div>
-              <div className="flex justify-end mt-4">
-                <button
-                  type="button"
-                  onClick={handleClosePopup}
-                  className="mr-2 px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      <RequestQuote
+        handleClosePopup={handleClosePopup}
+        handleSubmit={handleSubmit}
+        showPopup={showPopup}
+      />
 
       {showSuccess && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
