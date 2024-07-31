@@ -14,8 +14,7 @@ import UserLayout from "./Layout/Userlayout";
 import UserDashboard from "./pages/User/UserDashboard";
 import Adminadd from "./pages/Admin/Adminadd";
 import DescriptionPage from "./components/shared/Description";
-import RequestQuote from "./components/shared/RequestQuote";
-
+import FavoritesPage from "./components/shared/FavoritePages";
 
 const App = () => {
   return (
@@ -39,6 +38,7 @@ const App = () => {
                     <Route path='/user/data' element={<Userdata />}/>
                     <Route path='/user/dashboard' element={<UserDashboard/>}/>
                     <Route path="/description/:id" element={<DescriptionPage />} />
+                    <Route path="/favorites" element={<FavoritesPage />} />
                   </Route>
               </Routes>
           </BrowserRouter>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,6 +13,7 @@ const Userdata = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
   const locations = ['Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Nagapattinam', 'Namakkal', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Salem', 'Sivagangai', 'Thanjavur', 'Theni', 'Thoothukudi', 'Trichy', 'Tirunelveli', 'Tirupur', 'Tiruvallur', 'Tiruvannamalai', 'Vellore', 'Viluppuram', 'Virudhunagar'];
@@ -71,6 +73,20 @@ const Userdata = () => {
       priceRange: 'under 400'
     },
   ];
+
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(savedFavorites);
+  }, []);
+
+  const handleFavoriteToggle = (hall) => {
+    const updatedFavorites = favorites.some(fav => fav.id === hall.id)
+      ? favorites.filter(fav => fav.id !== hall.id)
+      : [...favorites, hall];
+
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
 
   const filteredData = data.filter(item => {
     return (
@@ -156,7 +172,15 @@ const Userdata = () => {
                 <p>Non-Veg Price: {item.nonVegPrice}</p>
               </div>
             </div>
-            <Button className='self-end mt-4' onClick={() => handleRequestQuoteClick(item.id)}>Request a Quote</Button>
+            <div className='flex justify-between items-center mt-4'>
+              <Button className='self-end' onClick={() => handleRequestQuoteClick(item.id)}>View details</Button>
+              <Button
+                className={`self-end ${favorites.some(fav => fav.id === item.id) ? 'bg-red-500' : 'bg-gray-500'}`}
+                onClick={() => handleFavoriteToggle(item)}
+              >
+                {favorites.some(fav => fav.id === item.id) ? 'Unfavorite' : 'Favorite'}
+              </Button>
+            </div>
           </CardContent>
         </Card>
       ))}
@@ -166,8 +190,6 @@ const Userdata = () => {
         handleSubmit={handleSubmit}
         showPopup={showPopup}
       />
-
-      
     </div>
   );
 };
