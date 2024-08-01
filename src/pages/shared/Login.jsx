@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  
   const navigate = useNavigate();
+  const emailur=useRef();
+  const passwordur=useRef();
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
-    const specificEmail = 'user@gmail.com';
-
-    if (email === specificEmail) {
-      // Proceed with login and redirect to the dashboard
-      console.log('Login successful');
-      navigate('/user/data'); // Redirect to the dashboard route
-    } else {
-      setError('Invalid email address');
+    const signin={
+      email:emailur.current.value,
+      password:passwordur.current.value
     }
-  };
+  
+
+try {
+  const response = await axios.post('http://localhost:8080/request/login', signin);
+  if (response.data=="Login successful") {
+    setTimeout(() => {
+      navigate('/user/data');
+    }, 1500);
+  }
+} catch (error) {
+  console.error('Signin failed:', error);
+}
+}
+
+  
+
 
   return (
     <div className="flex min-h-screen">
@@ -38,8 +49,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                ref={emailur}
                 className="w-full px-3 py-2 mt-1 border-b-2 text-black border-gray-300 rounded-md focus:outline-none focus:ring-orange-600 focus:border-orange-600"
                 required
               />
@@ -49,13 +59,12 @@ const Login = () => {
                 type="password"
                 id="password"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+               ref={passwordur}
                 className="w-full px-3 py-2 mt-1 border-b-2 text-black border-gray-300 rounded-md focus:outline-none focus:ring-orange-600 focus:border-orange-600"
                 required
               />
             </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+           
             <div>
               <button
                 type="submit"
@@ -64,11 +73,11 @@ const Login = () => {
                 Sign in
               </button>
             </div>
-            <NavLink to='/register'>
+           
               <p className="text-sm text-center text-gray-600 cursor-pointer p-1">
                 Don't have an account? Sign up
               </p>
-            </NavLink>
+            
             <NavLink to='/alogin'>
               <p className="text-sm font-semibold text-center text-indigo-600 cursor-pointer p-1">
                 Login for Admin

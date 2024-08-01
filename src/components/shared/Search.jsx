@@ -13,8 +13,8 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div className="flex justify-end">
-      <form onSubmit={handleSearch} className="w-full max-w-4xl">
-        <div className="p-4 bg-white rounded shadow-lg flex flex-col md:flex-row gap-6 ml-6 mr-6">
+      <form onSubmit={handleSearch} className="w-full max-w-5xl">
+        <div className="p-4 bg-white rounded shadow-lg flex flex-col md:flex-row gap-7 ">
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
@@ -82,7 +82,7 @@ const SearchBar = ({ onSearch }) => {
               className="p-2 border border-gray-300 rounded text-black"
             />
           </div>
-          <button type="submit" className="p-2 bg-blue-500 text-white rounded items-center ml-auto">
+          <button type="submit" className="p-4 bg-blue-500 text-white rounded items-center  ml-auto">
             Search
           </button>
         </div>

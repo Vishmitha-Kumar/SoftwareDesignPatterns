@@ -15,6 +15,8 @@ import UserDashboard from "./pages/User/UserDashboard";
 import Adminadd from "./pages/Admin/Adminadd";
 import DescriptionPage from "./components/shared/Description";
 import FavoritesPage from "./components/shared/FavoritePages";
+import Manager from "./pages/HallManager/Manager";
+import ManagerLayout from "./Layout/Managerlayout";
 
 const App = () => {
   return (
@@ -26,8 +28,6 @@ const App = () => {
                       <Route path='/login' element={<Login />} />
                       <Route path='/register' element={<SignUp />} />
                         <Route path='/alogin' element={<Alogin />}/> 
-                      
-
                   </Route>
                   <Route element={<AdminLayout />}>
                     <Route path='/admin/dashboard' element={<AdminDashboard />}/>
@@ -39,6 +39,11 @@ const App = () => {
                     <Route path='/user/dashboard' element={<UserDashboard/>}/>
                     <Route path="/description/:id" element={<DescriptionPage />} />
                     <Route path="/favorites" element={<FavoritesPage />} />
+                  </Route>
+                  <Route element={<ManagerLayout />}>
+                   
+                    <Route path='/manager/hall' element={<Manager/>}/>
+      
                   </Route>
               </Routes>
           </BrowserRouter>

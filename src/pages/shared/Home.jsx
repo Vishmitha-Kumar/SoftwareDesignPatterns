@@ -12,10 +12,6 @@ import { NavLink } from 'react-router-dom';
 import SearchBar from '../../components/shared/Search';
 
 
-
-
-
-
 const carouselItems = [
   {
     id: 1,
@@ -226,7 +222,7 @@ const Home = () => {
         </div>
     </div>
 
-    <div className="p-4">
+    {/* <div className="p-4">
         {searched && filteredHalls.length > 0 ? (
           <ul>
             {filteredHalls.map(hall => (
@@ -238,7 +234,7 @@ const Home = () => {
         )  :(
           searched && <NavLink to='/login' className='font-bold text-start text-lg text-orange-700 cursor-pointer'>Login for more results</NavLink>
         )}
-      </div>
+      </div> */}
 
 
     <div className='w-full flex justify-center items-start p-8'>

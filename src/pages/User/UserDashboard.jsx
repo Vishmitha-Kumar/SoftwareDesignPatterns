@@ -25,22 +25,20 @@ const UserDashboard = () => {
 
     const invoices = [
         {
-          invoice: "INV001",
+      
           hall:"JK Mahal",
-          totalAmount: "Rs.1500.00",
-          functionType: "Birthday Party",
+          date:"12-2-24",
+          status:"yes",
         },
         {
-          invoice: "INV002",
-         hall: "JK Mahal",
-          totalAmount: "Rs.15000.00",
-          functionType: "Engagement",
+          hall:"JK Mahal",
+          date:"12-2-24",
+          status:"yes",
         },
         {
-          invoice: "INV003",
-         hall: "SVS Marriage hall",
-          totalAmount: "Rs.24500.00",
-          functionType: "Wedding",
+          hall:"JK Mahal",
+          date:"12-2-24",
+          status:"yes",
         },
        
     ]
@@ -80,20 +78,20 @@ const UserDashboard = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]">Invoice</TableHead>
-                <TableHead>Hall Type</TableHead>
-                <TableHead>Amount Paid</TableHead>
-                <TableHead >Function</TableHead>
+             
+                <TableHead>Hall Name</TableHead>
+                <TableHead>Requested On</TableHead>
+                <TableHead >Status</TableHead>
               
               </TableRow>
             </TableHeader>
             <TableBody>
               {invoices.map((invoice) => (
                 <TableRow key={invoice.invoice}>
-                  <TableCell className="font-medium">{invoice.invoice}</TableCell>
+                
                   <TableCell>{invoice.hall}</TableCell>
-                  <TableCell>{invoice.totalAmount}</TableCell>
-                  <TableCell >{invoice.functionType}</TableCell>
+                  <TableCell>{invoice.date}</TableCell>
+                  <TableCell >{invoice.status}</TableCell>
                   
                 </TableRow>
               ))}
