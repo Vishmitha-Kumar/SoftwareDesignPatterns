@@ -41,16 +41,11 @@ const App = () => {
                     <Route path="/favorites" element={<FavoritesPage />} />
                   </Route>
                   <Route element={<ManagerLayout />}>
-                   
                     <Route path='/manager/hall' element={<Manager/>}/>
-      
                   </Route>
               </Routes>
           </BrowserRouter>
-
-
       </>
   )
 }
-
 export default App
