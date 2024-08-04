@@ -174,11 +174,8 @@ const Userdata = () => {
             </div>
             <div className='flex justify-between items-center mt-4'>
               <Button className='self-end' onClick={() => handleRequestQuoteClick(item.id)}>View details</Button>
-              <Button
-                className={`self-end ${favorites.some(fav => fav.id === item.id) ? 'bg-red-500' : 'bg-gray-500'}`}
-                onClick={() => handleFavoriteToggle(item)}
-              >
-                {favorites.some(fav => fav.id === item.id) ?  <Heart/> :  <Heart/>}
+              <Button variant='ghost' onClick={() => handleFavoriteToggle(item)}>
+                <Heart className={favorites.some(fav => fav.id === item.id) ? 'fill-current text-red-500' : ''} />
               </Button>
             </div>
           </CardContent>
