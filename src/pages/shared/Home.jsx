@@ -206,35 +206,33 @@ const Home = () => {
   const reviee = reviews[currentIndi];
   return (
     <>
-        <div className="relative w-full h-[70vh]">
-      <img 
+        <div className="relative w-full h-[70vh]  flex items-center justify-center">
+        <img 
         src="https://www.elizabethanne-weddings.com/wp-content/uploads/2023/02/louisgabriel-367-scaled.jpg" 
         alt="Banner Image" 
-        className="w-full h-full object-cover bg-opacity-5" 
+        className="w-full h-full  bg-opacity-5 rounded-ee-full" 
       />
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-md p-4 rounded shadow-lg z-10">
-          <h1 className="text-center text-4xl font-bold text-slate-50 mb-4">
-            Find & Book the Best Venue For Every Special Event
-          </h1>
-        </div>
-        <div className='absolute top-2/3 transform -translate-y-1/3 w-[90%] p-4 rounded shadow-lg z-10'>
-          <SearchBar onSearch={handleSearch} />
-        </div>
-    </div>
+  <div className="container mx-auto flex flex-col items-center justify-center text-center px-4">
+    <h1 className="text-4xl font-bold mb-6">
+      Find & Book the Best Venue
+      <span className="block">For Every Special Event</span>
+    </h1>
+    <p className="text-lg mb-8">
+      Explore a wide variety of venues that suit your special occasion. From
+      <span className="block"> weddings to corporate events, we have the perfect place for you!</span>
+    </p>
+    <NavLink to="/login">
+    <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
+      
+      Get Started
+    </button>
+    </NavLink>
+  </div>
+</div>
 
-    {/* <div className="p-4">
-        {searched && filteredHalls.length > 0 ? (
-          <ul>
-            {filteredHalls.map(hall => (
-              <li key={hall.id} className="p-2 border-b border-gray-300">
-                {hall.name} - {hall.location}
-              </li>
-            ))}
-          </ul>
-        )  :(
-          searched && <NavLink to='/login' className='font-bold text-start text-lg text-orange-700 cursor-pointer'>Login for more results</NavLink>
-        )}
-      </div> */}
+
+
+ 
 
 
     <div className='w-full flex justify-center items-start p-8'>

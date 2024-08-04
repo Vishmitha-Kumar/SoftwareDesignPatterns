@@ -35,9 +35,9 @@ try {
   return (
     <div className="flex min-h-screen">
       <div
-        className="flex-1 bg-cover bg-center"
+        className="flex-1 bg-cover bg-center bg-orange-200 rounded-b-full"
         style={{
-          backgroundImage: "url('https://ik.imagekit.io/hal1hunt/Home/Screenshot_2024-07-26_204341-removebg-preview%20(1).png?updatedAt=1722006934311')"
+          backgroundImage: "url('https://images.herzindagi.info/image/2023/Nov/wedding-in-rajasthan-palace.jpg')"
         }}
       ></div>
       <div className="flex items-center justify-center flex-1">
