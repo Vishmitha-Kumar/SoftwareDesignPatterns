@@ -222,7 +222,7 @@ const Home = () => {
       <span className="block"> weddings to corporate events, we have the perfect place for you!</span>
     </p>
     <NavLink to="/login">
-    <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
+    <button className="px-6 py-3 bg-orange-700 text-white rounded-lg shadow hover:bg-primary">
       
       Get Started
     </button>

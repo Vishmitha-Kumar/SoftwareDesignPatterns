@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MapPin } from 'lucide-react';
+import { Heart, MapPin } from 'lucide-react';
 import { CheckCircle2Icon } from 'lucide-react';
 import RequestQuote from '@/components/shared/RequestQuote';
 
@@ -178,7 +178,7 @@ const Userdata = () => {
                 className={`self-end ${favorites.some(fav => fav.id === item.id) ? 'bg-red-500' : 'bg-gray-500'}`}
                 onClick={() => handleFavoriteToggle(item)}
               >
-                {favorites.some(fav => fav.id === item.id) ? 'Unfavorite' : 'Favorite'}
+                {favorites.some(fav => fav.id === item.id) ?  <Heart/> :  <Heart/>}
               </Button>
             </div>
           </CardContent>

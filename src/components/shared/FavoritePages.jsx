@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import { Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
 
@@ -58,7 +59,7 @@ const FavoritesPage = () => {
                   className='bg-red-500 hover:bg-red-600 text-white'
                   onClick={() => handleUnfavorite(item.id)}
                 >
-                  Unfavorite
+                  <Heart/>
                 </Button>
               </div>
             </CardContent>
