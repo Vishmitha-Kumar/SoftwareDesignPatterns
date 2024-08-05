@@ -206,29 +206,29 @@ const Home = () => {
   const reviee = reviews[currentIndi];
   return (
     <>
-        <div className="relative w-full h-[70vh]  flex items-center justify-center">
-        <img 
-        src="https://www.elizabethanne-weddings.com/wp-content/uploads/2023/02/louisgabriel-367-scaled.jpg" 
-        alt="Banner Image" 
-        className="w-full h-full  bg-opacity-5 rounded-ee-full" 
-      />
-  <div className="container mx-auto flex flex-col items-center justify-center text-center px-4">
-    <h1 className="text-4xl font-bold mb-6">
+       <div className="relative w-full h-[70vh] flex items-center justify-center">
+  <img 
+    src="https://www.elizabethanne-weddings.com/wp-content/uploads/2023/02/louisgabriel-367-scaled.jpg" 
+    alt="Banner Image" 
+    className="w-full h-full object-cover bg-opacity-5 rounded-ee-full" 
+  />
+  <div className="absolute container mx-auto flex flex-col items-center justify-center text-center px-4">
+    <h1 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-white">
       Find & Book the Best Venue
       <span className="block">For Every Special Event</span>
     </h1>
-    <p className="text-lg mb-8">
+    <p className="text-sm md:text-lg mb-6 md:mb-8 text-white">
       Explore a wide variety of venues that suit your special occasion. From
-      <span className="block"> weddings to corporate events, we have the perfect place for you!</span>
+      <span className="block">weddings to corporate events, we have the perfect place for you!</span>
     </p>
     <NavLink to="/login">
-    <button className="px-6 py-3 bg-orange-700 text-white rounded-lg shadow hover:bg-primary">
-      
-      Get Started
-    </button>
+      <button className="px-4 py-2 md:px-6 md:py-3 bg-orange-700 text-white rounded-lg shadow hover:bg-primary">
+        Get Started
+      </button>
     </NavLink>
   </div>
 </div>
+
 
 
 
