@@ -16,6 +16,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { Description } from '@radix-ui/react-dialog';
 
 const Adminadd = () => {
   const [add, setAdd] = useState(false);
@@ -58,10 +59,17 @@ const Adminadd = () => {
   const [newHall, setNewHall] = useState({
     HallId: "",
     Hallname: "",
+    Description:"",
     Location: "",
-    Capacity: "",
+    Organizer:"",
+    Contact:"",
+    VegPrice:"Rs. ",
+    Nonveg:"Rs. ",
+    Reviews:"",
+    Type:"",
+    HallType:"",
+    GuestRange:"",
     PriceRange: "",
-    Facilities: "",
   });
 
   const handleInputChange = (e) => {
@@ -82,10 +90,18 @@ const Adminadd = () => {
     setNewHall({
       HallId: "",
       Hallname: "",
+      Description:"",
       Location: "",
-      Capacity: "",
+      Organizer:"",
+      Contact:"",
+      VegPrice:"Rs. ",
+      Nonveg:"Rs. ",
+      Reviews:"",
+      Type:"",
+      HallType:"",
+      GuestRange:"",
       PriceRange: "",
-      Facilities: "",
+    
     });
     setAdd(false);
   };
@@ -118,10 +134,16 @@ const Adminadd = () => {
               </CardHeader>
               <CardContent>
                 <img src="https://via.placeholder.com/150" alt={hall.Hallname} className="h-20 w-20 mb-4 object-cover" />
+                <p><strong>Description:</strong>{hall.Description}</p>
                 <p><strong>Location:</strong> {hall.Location}</p>
-                <p><strong>Capacity:</strong> {hall.Capacity}</p>
+                <p><strong>Contact:</strong> {hall.Contact}</p>
+                <p><strong>Veg Price:</strong> {hall.VegPrice}</p>
+                <p><strong>Non-Veg Price:</strong> {hall.Nonveg}</p>
+                <p><strong>Reviews:</strong> {hall.Reviews}</p>
+                <p><strong>Type:</strong> {hall.Type}</p>
+                <p><strong>Hall Type:</strong> {hall.HallType}</p>
+                <p><strong>Guest Range:</strong> {hall.GuestRange}</p>
                 <p><strong>Price Range:</strong> {hall.PriceRange}</p>
-                <p><strong>Facilities:</strong> {hall.Facilities}</p>
               </CardContent>
               <div className="absolute top-2 right-2 flex space-x-2">
                 <Button size="icon" onClick={() => handleEditHall(index)}>
@@ -149,28 +171,70 @@ const Adminadd = () => {
               <Input id="Hallname" value={newHall.Hallname} onChange={handleInputChange} className="col-span-3" />
             </div>
             <div className="flex flex-col items-start gap-4">
+              <Label htmlFor="Description" className="text-right">
+                Description
+              </Label>
+              <Input id=" Description" value={newHall.Location} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
               <Label htmlFor="Location" className="text-right">
                 Location
               </Label>
               <Input id="Location" value={newHall.Location} onChange={handleInputChange} className="col-span-3" />
             </div>
             <div className="flex flex-col items-start gap-4">
-              <Label htmlFor="Capacity" className="text-right">
-                Capacity
+              <Label htmlFor="Organizer" className="text-right">
+                Organizer
               </Label>
-              <Input id="Capacity" type="number" value={newHall.Capacity} onChange={handleInputChange} className="col-span-3" />
+              <Input id="Organizer"  value={newHall.Capacity} onChange={handleInputChange} className="col-span-3" />
             </div>
             <div className="flex flex-col items-start gap-4">
-              <Label htmlFor="PriceRange" className="text-right">
+              <Label htmlFor="  Contact" className="text-right">
+                Contact
+              </Label>
+              <Input id="Contact" value={newHall.PriceRange} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor="Veg Price" className="text-right">
+                Veg Price
+              </Label>
+              <Input id="Veg Price" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor=" Non-Veg Price" className="text-right">
+                Non-Veg Price
+              </Label>
+              <Input id=" Non-Veg Price" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor=" Reviews" className="text-right">
+                Reviews
+              </Label>
+              <Input id=" Reviews" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor="Type" className="text-right">
+                Type
+              </Label>
+              <Input id="Type" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor="Hall Type" className="text-right">
+                Hall Type
+              </Label>
+              <Input id="Hall Type" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor=" Guest Range" className="text-right">
+                Guest Range
+              </Label>
+              <Input id=" Guest Range" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor="Price Range" className="text-right">
                 Price Range
               </Label>
-              <Input id="PriceRange" value={newHall.PriceRange} onChange={handleInputChange} className="col-span-3" />
-            </div>
-            <div className="flex flex-col items-start gap-4">
-              <Label htmlFor="Facilities" className="text-right">
-                Facilities
-              </Label>
-              <Input id="Facilities" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
+              <Input id="Price Range" value={newHall.Facilities} onChange={handleInputChange} className="col-span-3" />
             </div>
           </div>
           <SheetFooter className='flex justify-between'>
