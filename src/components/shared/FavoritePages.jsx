@@ -28,27 +28,27 @@ const FavoritesPage = () => {
         favorites.map(item => (
           <Card key={item.id} className='shadow-sm shadow-primary mb-4 flex'>
             <div className='w-1/4'>
-              <img src={item.imgs} alt='Ceremony' className='w-full h-full object-cover' />
+              <img src="" alt='Ceremony' className='w-full h-full object-cover' />
             </div>
             <CardContent className='flex flex-col justify-between ml-4 w-3/4'>
               <div className='flex flex-row justify-between'>
                 <div className='flex flex-col gap-2'>
-                  <CardTitle>{item.name}</CardTitle>
+                  <CardTitle>{item.hallname}</CardTitle>
                   <p style={{ display: 'flex', alignItems: 'center' }}>
                     <span style={{ marginRight: '8px' }}><MapPin /></span>
                     {item.location || 'N/A'}
                   </p>
                   <p>Type: {item.type}</p>
-                  <p>Reviews: {item.reviews}</p>
+                  <p>Reviews: {item.hallDetails?.reviews}</p>
                 </div>
                 <div className='flex flex-col gap-2'>
-                  <p>Hall Type: {item.hallType}</p>
-                  <p>Price Range: {item.priceRange}</p>
-                  <p>Guests: {item.guestRange}</p>
+                  <p>Hall Type: {item.halltype}</p>
+                  <p>Price Range: {item.hallDetails?.priceRange}</p>
+                  <p>Guests: {item.hallDetails?.guestRange}</p>
                 </div>
                 <div className='flex flex-col gap-2'>
-                  <p>Veg Price: {item.vegPrice}</p>
-                  <p>Non-Veg Price: {item.nonVegPrice}</p>
+                  <p>Veg Price: {item.hallDetails?.vegPrice}</p>
+                  <p>Non-Veg Price: {item.hallDetails?.nonveg}</p>
                 </div>
               </div>
               <div className='flex justify-between mt-4'>
