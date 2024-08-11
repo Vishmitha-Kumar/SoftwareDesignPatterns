@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -32,45 +32,53 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Register,getUsers } from '../../service/api';
 
 const AdminUsers = () => {
   const [open, setOpen] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
-  const [users, setUsers] = useState([
-    { username: 'user1', email: 'user1@example.com', password: 'password1' },
-    { username: 'user2', email: 'user2@example.com', password: 'password2' },
-  ]);
-  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  // const [editIndex, setEditIndex] = useState(null);
+  const [formData, setFormData] = useState({
+     name: '', email: '', password: '',role:'' });
+  
+  const [users, setUsers] = useState([]);
+  
+  useEffect(()=>{
+    const fetchUsers=async()=>{
+      try{
+        const response=await getUsers();
+        setUsers(response.data);
+      }
+      catch(error){
+        console.error('Error fetching users',error);
+      }
+    };
+    fetchUsers();
+  },[]);
+
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleAddOrEditUser = () => {
-    if (editIndex !== null) {
-      const updatedUsers = users.map((user, index) =>
-        index === editIndex ? formData : user
+  const handleAdd= async(event) => {
+    event.preventDefault();
+    try{
+      await Register(
+        formData.name,
+        formData.email,
+        formData.password,
+        formData.role
       );
-      setUsers(updatedUsers);
-      setEditIndex(null);
-    } else {
-      setUsers([...users, formData]);
+      setOpen(false);
+      const response=await getUsers();
+      setUsers(response.data);
+    }catch(error){
+      console.error("Error adding uses",error);
     }
-    setFormData({ username: '', email: '', password: '' });
-    setOpen(false);
+    
   };
 
-  const handleEditUser = (index) => {
-    setEditIndex(index);
-    setFormData(users[index]);
-    setOpen(true);
-  };
-
-  const handleDeleteUser = (index) => {
-    const updatedUsers = users.filter((_, i) => i !== index);
-    setUsers(updatedUsers);
-  };
 
   return (
     <div className='m-1 p-4'>
@@ -88,38 +96,39 @@ const AdminUsers = () => {
                 <TableHead>Username</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Password</TableHead>
-                <TableHead className="flex justify-center">Actions</TableHead>
+                <TableHead>Role</TableHead>
+                {/* <TableHead className="flex justify-center">Actions</TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
-              {users.map((user, index) => (
-                <TableRow key={index}>
-                  <TableCell className="font-medium">{user.username}</TableCell>
+              {users.map((user) => (
+                <TableRow>
+                  <TableCell className="font-medium">{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.password}</TableCell>
-                  <TableCell>
+                  <TableCell>{user.role}</TableCell>
+                  {/* <TableCell>
                     <span className='w-full h-full flex justify-center items-center gap-3'>
                       <Edit
                         className='h-8 w-8 p-1 text-blue-500 cursor-pointer hover:bg-blue-500 hover:text-background rounded-md'
-                        onClick={() => handleEditUser(index)}
+                        
                       />
                       <TrashIcon
                         className='h-8 w-8 p-1 text-red-500 cursor-pointer hover:bg-red-500 hover:text-background rounded-md'
-                        onClick={() => handleDeleteUser(index)}
+                        
                       />
                     </span>
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </CardContent>
       </Card>
-
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>{editIndex !== null ? "Edit User" : "Add User"}</SheetTitle>
+            <SheetTitle>Add User</SheetTitle>
           </SheetHeader>
           <div className="grid gap-4 py-4">
             <div className="flex flex-col items-start gap-4">
@@ -127,8 +136,8 @@ const AdminUsers = () => {
                 Username
               </Label>
               <Input
-                id="username"
-                value={formData.username}
+                id="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 className="col-span-3"
               />
@@ -155,10 +164,21 @@ const AdminUsers = () => {
                 className="col-span-3"
               />
             </div>
+            <div className="flex flex-col items-start gap-4">
+              <Label htmlFor="role" className="text-right">
+                Role
+              </Label>
+              <Input
+                id="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                className="col-span-3"
+              />
+            </div>
           </div>
           <SheetFooter className='flex justify-between'>
             <Button className='bg-red-400 hover:bg-red-500' onClick={() => setOpen(false)}>Cancel</Button>
-            <Button type="button" onClick={handleAddOrEditUser}>Save changes</Button>
+            <Button type="button" onClick={handleAdd}>Save changes</Button>
           </SheetFooter>
         </SheetContent>
       </Sheet>

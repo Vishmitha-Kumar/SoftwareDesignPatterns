@@ -18,6 +18,8 @@ axiosInstance.interceptors.request.use(
 );
 const Register = (name, email, password, role) => axiosInstance.post(`${baseURL}/v1/auth/register`, {name, email, password, role});
 
+const getUsers=()=>axiosInstance.get('/get');
+
 const LoginData = (email, password) => axiosInstance.post('/v1/auth/authenticate', {email, password});
 
 const getHalls=()=>axiosInstance.get('/hall/getAlls');
@@ -36,4 +38,5 @@ const deleteHall=(hallId)=>axiosInstance.delete(`/hall/deleteHall/${hallId}`)
 const updateHall=(hallId,hall)=>axiosInstance.put(`/hall/putHall/${hallId}`,hall)
 
 
-export { axiosInstance, Register,LoginData,addhalls,getHalls,deleteHall,updateHall }
+
+export { axiosInstance, Register,LoginData,addhalls,getHalls,deleteHall,updateHall,getUsers }
