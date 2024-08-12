@@ -6,9 +6,14 @@ import RequestQuote from './RequestQuote';
 import { getHalls } from '../../service/api';
 
 const DescriptionPage = () => {
-  const { id } = useParams();
+  const { hallID } = useParams();
   const [description, setDescription] = useState([]);
   const [showSheet, setShowSheet] = useState(false);
+
+ 
+console.log(hallID);
+
+
 
   useEffect(() => {
     const fetchDescription = async () => {
@@ -22,8 +27,8 @@ const DescriptionPage = () => {
     fetchDescription();
   }, []);
 
-  // Find the specific hall by id
-  const item = description.find((item) => item.id === parseInt(id));
+
+  const item = description.find((item) => item.id === parseInt(hallID));
 
   const handleRequestQuote = () => {
     setShowSheet(true);
@@ -74,7 +79,8 @@ const DescriptionPage = () => {
       ) : (
         <p>Loading...</p> 
       )}
-      <RequestQuote handleCloseSheet={handleCloseSheet} handleSubmit={handleSubmit} showSheet={showSheet} />
+      <RequestQuote hallID={hallID} handleCloseSheet={handleCloseSheet} handleSubmit={handleSubmit} showSheet={showSheet} 
+      />
     </div>
   );
 };

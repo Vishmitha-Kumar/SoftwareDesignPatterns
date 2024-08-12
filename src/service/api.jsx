@@ -34,9 +34,23 @@ const addhalls=(hallname,description,location,organiser,contact,vegPrice,nonveg,
         },
     type,halltype});
 
+    const bookHall = (hallID, occasion, guest, contact, budget, food, fromdate, todate, bookingStatus) =>
+        axiosInstance.post(`/booking/bookHalls/${hallID}`, {
+            occasion,
+            guest,
+            contact,
+            budget,
+            food,
+            fromdate,
+            todate,
+            bookingStatus,
+            
+        });
+    
+
 const deleteHall=(hallId)=>axiosInstance.delete(`/hall/deleteHall/${hallId}`)
 const updateHall=(hallId,hall)=>axiosInstance.put(`/hall/putHall/${hallId}`,hall)
 
 
 
-export { axiosInstance, Register,LoginData,addhalls,getHalls,deleteHall,updateHall,getUsers }
+export { axiosInstance, Register,LoginData,addhalls,getHalls,deleteHall,updateHall,getUsers,bookHall }
