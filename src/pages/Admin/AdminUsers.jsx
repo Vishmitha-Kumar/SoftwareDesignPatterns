@@ -36,7 +36,7 @@ import { Register,getUsers } from '../../service/api';
 
 const AdminUsers = () => {
   const [open, setOpen] = useState(false);
-  // const [editIndex, setEditIndex] = useState(null);
+  
   const [formData, setFormData] = useState({
      name: '', email: '', password: '',role:'' });
   

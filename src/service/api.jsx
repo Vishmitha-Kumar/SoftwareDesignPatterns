@@ -22,7 +22,7 @@ const getUsers=()=>axiosInstance.get('/get');
 
 const LoginData = (email, password) => axiosInstance.post('/v1/auth/authenticate', {email, password});
 
-const getHalls=()=>axiosInstance.get('/hall/getAlls');
+const getHalls=()=>axiosInstance.get(`/hall/getAlls`);
 
 const addhalls=(hallname,description,location,organiser,contact,vegPrice,nonveg,reviews,type,halltype,guestRange,priceRange)=>
     axiosInstance.post('/hall/addHalls',{hallname,description,location,organiser,contact,
@@ -47,10 +47,10 @@ const addhalls=(hallname,description,location,organiser,contact,vegPrice,nonveg,
             
         });
     
-
+const getBooking=()=>axiosInstance.get(`/booking/getAlls`)
 const deleteHall=(hallId)=>axiosInstance.delete(`/hall/deleteHall/${hallId}`)
 const updateHall=(hallId,hall)=>axiosInstance.put(`/hall/putHall/${hallId}`,hall)
 
 
 
-export { axiosInstance, Register,LoginData,addhalls,getHalls,deleteHall,updateHall,getUsers,bookHall }
+export { axiosInstance, Register,LoginData,addhalls,getHalls,deleteHall,updateHall,getUsers,bookHall ,getBooking}

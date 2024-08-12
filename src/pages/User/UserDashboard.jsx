@@ -18,30 +18,13 @@ import {
     TableRow,
   } from "@/components/ui/table"
 
+  import { getHalls } from '../../service/api'
+
 import { DollarSign, ShoppingBag, User, Users } from 'lucide-react'
 const UserDashboard = () => {
 
-
-
-    const invoices = [
-        {
-      
-          hall:"JK Mahal",
-          date:"12-2-24",
-          status:"yes",
-        },
-        {
-          hall:"JK Mahal",
-          date:"12-2-24",
-          status:"yes",
-        },
-        {
-          hall:"JK Mahal",
-          date:"12-2-24",
-          status:"yes",
-        },
-       
-    ]
+  const[invoices,setInvoices]=useState([]);
+  
     return (
         <div>
         <div className="flex flex-row p-4 gap-4">
@@ -80,7 +63,7 @@ const UserDashboard = () => {
               <TableRow>
              
                 <TableHead>Hall Name</TableHead>
-                <TableHead>Requested On</TableHead>
+                <TableHead>Occasion</TableHead>
                 <TableHead >Status</TableHead>
               
               </TableRow>
