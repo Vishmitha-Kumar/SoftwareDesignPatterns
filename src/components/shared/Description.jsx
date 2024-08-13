@@ -10,11 +10,6 @@ const DescriptionPage = () => {
   const [description, setDescription] = useState([]);
   const [showSheet, setShowSheet] = useState(false);
 
- 
-console.log(hallID);
-
-
-
   useEffect(() => {
     const fetchDescription = async () => {
       try {
@@ -26,7 +21,6 @@ console.log(hallID);
     };
     fetchDescription();
   }, []);
-
 
   const item = description.find((item) => item.id === parseInt(hallID));
 
@@ -51,11 +45,26 @@ console.log(hallID);
           <h1 className="text-3xl font-bold mb-4">{item.hallname}</h1>
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2">
-              <img src="" alt={item.hallname} className="w-full h-auto rounded-lg mb-4" />
+              <img 
+                src="https://media.weddingz.in/images/16ab8276a8bfa26550f679e8e6963687/best-wedding-reception-halls-in-patna-you-will-absolutely-fall-in-love-with.jpg" 
+                alt={item.hallname} 
+                className="w-full h-auto rounded-lg mb-4" 
+              />
               <div className="flex flex-wrap -mx-2">
-                {item.imgs?.slice(1).map((img, index) => (
+                {[
+                  "https://www.itchotels.com/content/dam/itchotels/in/umbrella/miscellaneous-pages/meeting-and-events/listing/desktop/culture.jpg",
+                  "https://cdn.venuelook.com/uploads/space_2877/1602672423_204x158.png",
+                  "https://cdn.venuelook.com/uploads/space_2877/1646029156_204x158.png",
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9pTZ13JBoo94ePGmVnhjSKamkofeOWr01yVLyhw9pNRIah9YL3m3oWuNICDrOzqS_nlA&usqp=CAU",
+                  "https://www.confident-group.com/wp-content/uploads/2023/10/shutterstock_520554535-1.jpg",
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe98_9I_AaRIAjNWPerjEk6ZtICllLKfa5G9db1ogjikTH3O5IxtIAvp7wdYixW1ItBn8&usqp=CAU",
+                ].map((img, index) => (
                   <div key={index} className="w-1/2 px-2 mb-4">
-                    <img src="" alt={`${item.hallname} ${index + 1}`} className="w-full h-auto rounded-lg" />
+                    <img 
+                      src={img} 
+                      alt={`${item.hallname} ${index + 1}`} 
+                      className="w-full h-auto rounded-lg" 
+                    />
                   </div>
                 ))}
               </div>

@@ -100,10 +100,12 @@ useEffect(() => {
                 Sign in
               </button>
             </div>
-           
+             
+             <NavLink to='/register'>
               <p className="text-sm text-center text-gray-600 cursor-pointer p-1">
                 Don't have an account? Sign up
               </p>
+              </NavLink>
 {/*             
             <NavLink to='/alogin'>
               <p className="text-sm font-semibold text-center text-indigo-600 cursor-pointer p-1">

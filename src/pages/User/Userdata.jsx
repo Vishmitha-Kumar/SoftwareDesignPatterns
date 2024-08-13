@@ -144,7 +144,7 @@ useEffect(()=>{
       {filteredData.map(item => (
         <Card key={item.id} className='shadow-sm shadow-primary mb-4 flex'>
           <div className='w-1/4'>
-            <img src="" alt='Ceremony' className='w-full h-full object-cover' />
+            <img src="https://media.weddingz.in/images/16ab8276a8bfa26550f679e8e6963687/best-wedding-reception-halls-in-patna-you-will-absolutely-fall-in-love-with.jpg" alt='Ceremony' className='w-full h-full object-cover' />
           </div>
           <CardContent className='flex flex-col justify-between ml-4 w-3/4'>
             <div className='flex flex-row justify-between'>
@@ -154,8 +154,8 @@ useEffect(()=>{
                   <span style={{ marginRight: '8px' }}><MapPin /></span>
                   {item.location || 'N/A'}
                 </p>
-                <p>Type: {item.type}</p>
-                <p>Reviews: {item.hallDetails?.reviews}</p>
+                <p><strong>Type:</strong> {item.type}</p>
+                <p><strong>Reviews:</strong> {item.hallDetails?.reviews}</p>
               </div>
               <div className='flex flex-col gap-2'>
                 <p>Hall Type: {item.halltype}</p>

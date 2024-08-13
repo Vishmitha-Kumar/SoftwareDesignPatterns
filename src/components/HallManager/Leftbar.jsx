@@ -10,6 +10,11 @@ const Leftbar = () => {
       link: '/manager/hall',
       icon: LayoutDashboard
     }, 
+    {
+      title:'Add Halls',
+      link:'/admin/hall',
+      icon:Blocks
+    }
 
   ]
 

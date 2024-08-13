@@ -32,7 +32,6 @@ const App = () => {
                   <Route element={<AdminLayout />}>
                     <Route path='/admin/dashboard' element={<AdminDashboard />}/>
                     <Route path='/admin/users' element={<AdminUsers />}/>
-                    <Route path='/admin/hall' element={<Adminadd/>}/>
                   </Route>
                   <Route element={<UserLayout />}>
                     <Route path='/user/data' element={<Userdata />}/>
@@ -42,6 +41,7 @@ const App = () => {
                   </Route>
                   <Route element={<ManagerLayout />}>
                     <Route path='/manager/hall' element={<Manager/>}/>
+                    <Route path='/admin/hall' element={<Adminadd/>}/>
                   </Route>
               </Routes>
           </BrowserRouter>

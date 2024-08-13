@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import {
     Card,
     CardContent,
@@ -18,13 +18,25 @@ import {
     TableRow,
   } from "@/components/ui/table"
 
-  import { getHalls } from '../../service/api'
+  import { getBooking, getHalls } from '../../service/api'
 
 import { DollarSign, ShoppingBag, User, Users } from 'lucide-react'
 const UserDashboard = () => {
 
   const[invoices,setInvoices]=useState([]);
   
+  useEffect(()=>{
+    const fetchBooking=async()=>{
+      try{
+        const response=await getBooking();
+        setInvoices(response.data);
+      }catch(error){
+        console.error("Error fetching user booking:",error);
+      }
+    };
+    fetchBooking();
+  },[]);
+
     return (
         <div>
         <div className="flex flex-row p-4 gap-4">
@@ -36,7 +48,7 @@ const UserDashboard = () => {
                     <Users className="h-6 w-6 text-primary" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">3</div>
+                    <div className="text-2xl font-bold">1</div>
                 </CardContent>
             </Card>
            
@@ -48,7 +60,7 @@ const UserDashboard = () => {
                     <ShoppingBag className="h-6 w-6 text-primary" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">41,000</div>
+                    <div className="text-2xl font-bold">3000</div>
                 </CardContent>
             </Card>
 
@@ -72,9 +84,9 @@ const UserDashboard = () => {
               {invoices.map((invoice) => (
                 <TableRow key={invoice.invoice}>
                 
-                  <TableCell>{invoice.hall}</TableCell>
-                  <TableCell>{invoice.date}</TableCell>
-                  <TableCell >{invoice.status}</TableCell>
+                  <TableCell>{invoice.id}</TableCell>
+                  <TableCell>{invoice.occasion}</TableCell>
+                  <TableCell >{invoice.bookingStatus}</TableCell>
                   
                 </TableRow>
               ))}

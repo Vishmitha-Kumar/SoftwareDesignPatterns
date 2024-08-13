@@ -134,7 +134,7 @@ const Adminadd = () => {
                 <CardTitle>{hall.hallname}</CardTitle>
               </CardHeader>
               <CardContent>
-                <img src="https://via.placeholder.com/150" alt={hall.hallname} className="h-20 w-20 mb-4 object-cover" />
+                <img src="https://media.weddingz.in/images/16ab8276a8bfa26550f679e8e6963687/best-wedding-reception-halls-in-patna-you-will-absolutely-fall-in-love-with.jpg" alt={hall.hallname} className="h-20 w-20 mb-4 object-cover" />
                 <p><strong>Description:</strong>{hall.description}</p>
                 <p><strong>Location:</strong> {hall.location}</p>
                 <p><strong>Organiser:</strong> {hall.organiser}</p>
