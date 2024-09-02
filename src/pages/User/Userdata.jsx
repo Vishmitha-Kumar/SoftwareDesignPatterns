@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, MapPin } from 'lucide-react';
-import { CheckCircle2Icon } from 'lucide-react';
 import RequestQuote from '@/components/shared/RequestQuote';
 import { getHalls } from '../../service/api';
 
@@ -15,26 +13,10 @@ const Userdata = () => {
   const [selectedLocation, setSelectedLocation] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [favorites, setFavorites] = useState([]);
-  const[datas,setDatas]=useState([]);
+  const [datas, setDatas] = useState([]);
   const navigate = useNavigate();
 
   const locations = ['Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Nagapattinam', 'Namakkal', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Salem', 'Sivagangai', 'Thanjavur', 'Theni', 'Thoothukudi', 'Trichy', 'Tirunelveli', 'Tirupur', 'Tiruvallur', 'Tiruvannamalai', 'Vellore', 'Viluppuram', 'Virudhunagar'];
-
-  // const [hallData,sethallData]=useState({
-  //   hallname: "",
-  //   location: "",
-  //   vegPrice:"",
-  //   nonveg:"",
-  //   reviews:"",
-  //   type:"",
-  //   halltype:"",
-  //   guestRange:"",
-  //   priceRange: "",
-
-  // });
-
-
-
 
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -53,49 +35,30 @@ const Userdata = () => {
   const filteredData = datas.filter(item => {
     return (
       (!filters.type || item.type === filters.type) &&
-      (!filters.halltype || item.halltype === filters.halltype) &&
-      (!filters.guestRange || item.guestRange === filters.guestRange) &&
-      (!filters.priceRange || item.priceRange === filters.priceRange) &&
+      (!filters.hallType || item.halltype === filters.hallType) &&
+      (!filters.guestRange || item.hallDetails?.guestRange === filters.guestRange) &&
+      (!filters.priceRange || item.hallDetails?.priceRange === filters.priceRange) &&
       (!selectedLocation || item.location === selectedLocation) &&
       (item.hallname && item.hallname.toLowerCase().includes(searchTerm.toLowerCase()))
-    );    
+    );
   });
 
-
-
-
-useEffect(()=>{
-  const fetchHall=async()=>{
-    try{
-      const response=await getHalls();
-      console.log(response.data); 
-      setDatas(response.data);
-    }
-    catch(error){
-      console.error("Error fetching Halls",error);
-    }
-  };
-  fetchHall();
-},[]);
-
-
-
-
-
-
-
-
+  useEffect(() => {
+    const fetchHall = async () => {
+      try {
+        const response = await getHalls();
+        console.log('Fetched Halls:', response.data);
+        setDatas(response.data);
+      } catch (error) {
+        console.error('Error fetching Halls:', error);
+      }
+    };
+    fetchHall();
+  }, []);
 
   const handleRequestQuoteClick = (id) => {
     navigate(`/description/${id}`);
   };
-
-
-
-
-
-
-
 
   const handleClosePopup = () => {
     setShowPopup(false);
@@ -140,6 +103,10 @@ useEffect(()=>{
           />
         </div>
       </div>
+
+      {filteredData.length === 0 && (
+        <p>No halls found that match the criteria.</p>
+      )}
 
       {filteredData.map(item => (
         <Card key={item.id} className='shadow-sm shadow-primary mb-4 flex'>

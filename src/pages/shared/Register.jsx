@@ -28,7 +28,7 @@ const handleSubmit=async(e)=>{
     toast.success("Register Successfull")
     setTimeout(()=>{
       navigate('/login')
-    },5000)
+    },2000)
   }
   else{
     toast.error(res.data)
@@ -77,8 +77,8 @@ const handleSubmit=async(e)=>{
             >
               <option value="" disabled selected>Select your role</option>
               <option value="USER">USER</option>
-              <option value="OWNER">OWNER</option>
-              <option value="ADMIN">ADMIN</option>
+              {/* <option value="OWNER">OWNER</option>
+              <option value="ADMIN">ADMIN</option> */}
             </select>
           </div>
             <div>
