@@ -84,7 +84,7 @@ const Manager = () => {
                               <TableHead>Budget Range</TableHead>
                               <TableHead>Food Preferences</TableHead>
                               <TableHead>Status</TableHead>
-                              <TableHead className="flex justify-center">Actions</TableHead>
+                              <TableHead>Actions</TableHead>
                           </TableRow>
                       </TableHeader>
                       <TableBody>

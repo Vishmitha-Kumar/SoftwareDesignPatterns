@@ -125,13 +125,13 @@ const Userdata = () => {
                 <p><strong>Reviews:</strong> {item.hallDetails?.reviews}</p>
               </div>
               <div className='flex flex-col gap-2'>
-                <p>Hall Type: {item.halltype}</p>
-                <p>Price Range: {item.hallDetails?.priceRange}</p>
-                <p>Guests Range: {item.hallDetails?.guestRange}</p>
+                <p><strong>Hall Type:</strong> {item.halltype}</p>
+                <p><strong>Price Range:</strong> {item.hallDetails?.priceRange}</p>
+                <p><strong>Guests Range:</strong> {item.hallDetails?.guestRange}</p>
               </div>
               <div className='flex flex-col gap-2'>
-                <p>Veg Price: {item.hallDetails?.vegPrice}</p>
-                <p>Non-Veg Price: {item.hallDetails?.nonveg}</p>
+                <p><strong>Veg Price: </strong>{item.hallDetails?.vegPrice}</p>
+                <p><strong>Non-Veg Price:</strong> {item.hallDetails?.nonveg}</p>
               </div>
             </div>
             <div className='flex justify-between items-center mt-4'>
